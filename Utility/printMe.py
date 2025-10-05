@@ -1,8 +1,8 @@
 import platform
 from Settings.settings import User, App
 from colorama import init, Style, Fore
-    
- # solo queste verranno importate con *
+
+
 __all__ = ['intro'] 
 
 def intro():
@@ -15,9 +15,13 @@ def intro():
             introWindows()  # default
 
 def introLinux():
-    init(autoreset=True)
-    print(Style.BRIGHT + Fore.BLUE + f"{App.name}")
-    print(f"- by {User.name} {User.surname} -\n")
+    RESET = "\033[0m"
+    BRIGHT = "\033[1m"
+    ITALIC = "\033[3m"
+    BLUE = "\033[34m"
+
+    print(f"{BRIGHT}{BLUE}{App.name}{RESET}")
+    print(f"- by {ITALIC}{User.name} {User.surname}{RESET} -\n")
 
 def introOs():
     introLinux()

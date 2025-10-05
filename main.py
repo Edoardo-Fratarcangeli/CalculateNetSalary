@@ -6,6 +6,6 @@ from Input.collectors import *
 if __name__ == "__main__":
     intro()
     state, income, expenses_list = CollectDataFromInput()
-    netIncome = analyze(state, income)
-    printResult()
+    result = analyze(state, income, expenses_list)
+    printResult(result)
 

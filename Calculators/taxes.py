@@ -142,15 +142,12 @@ def federalTax(income):
         
         brackets.append((lower, upper, rate))
 
-    federal_tax = 0
-    previous_limit = 0
-    
-    for limit, rate in brackets:
-        if income > previous_limit:
-            taxable = min(income, limit) - previous_limit
-            federal_tax += taxable * rate
-            previous_limit = limit
+    tax = 0
+    for lower, upper, rate in brackets:
+        if income > lower:
+            # calcola quanto del reddito rientra nello scaglione
+            taxable = min(income, upper) - lower
+            tax += taxable * rate
         else:
-            break
-
-    return federal_tax * income
+            break  # se income <= lower, non tassare ulteriormente
+    return tax
